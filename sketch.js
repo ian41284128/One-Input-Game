@@ -1,7 +1,7 @@
 let scoreCircle;
 let ui;
 let gameManager;
-let noiseScale=500, noiseStrength=1, centerCircleRadius = 180;
+let noiseScale=500, noiseStrength=1, centerCircleRadius = 170;
 let startGame = false;
 
 let startButtonFill;
@@ -25,32 +25,35 @@ let emailAlert;
 let money;
 let phone;
 let receipt;
+
 let closed_hand;
 let open_hand;
+let clock;
 
 function preload(){
   toothbrush = loadImage("https://cdn.iconscout.com/icon/free/png-256/toothbrush-1828030-1551575.png");
-  message = loadImage("SpeechBubble.png");
-  phoneAlert = loadImage("PhoneAlert.png");
-  email = loadImage("Email.png");
-  heart = loadImage("Heart.png");
-  brokenHeart = loadImage("BrokenHeart.png");
-  notes = loadImage("Writing.png");
-  groceries = loadImage("Groceries.png");
-  medicine = loadImage("Pills.png");
-  broom = loadImage("Broom.png");
-  calendar = loadImage("Calendar.png");
-  emailAlert = loadImage("EmailAlert.png");
-  money = loadImage("Money.png");
-  phone = loadImage("Phone.png");
-  receipt = loadImage("Receipt.png");
+  message = loadImage("images/SpeechBubble.png");
+  phoneAlert = loadImage("images/PhoneAlert.png");
+  email = loadImage("images/Email.png");
+  heart = loadImage("images/Heart.png");
+  brokenHeart = loadImage("images/BrokenHeart.png");
+  notes = loadImage("images/Writing.png");
+  groceries = loadImage("images/Groceries.png");
+  medicine = loadImage("images/Pills.png");
+  broom = loadImage("images/Broom.png");
+  calendar = loadImage("images/Calendar.png");
+  emailAlert = loadImage("images/EmailAlert.png");
+  money = loadImage("images/Money.png");
+  phone = loadImage("images/Phone.png");
+  receipt = loadImage("images/Receipt.png");
   
   closed_hand = loadImage("https://img.icons8.com/external-soft-fill-juicy-fish/512/external-grab-cursors-soft-fill-soft-fill-juicy-fish-2.png");
   open_hand = loadImage("https://img.icons8.com/external-soft-fill-juicy-fish/512/external-hand-cursors-soft-fill-soft-fill-juicy-fish-2.png");
+  clock = loadImage("images/ClockFace.png");
 }
 
 function setup() {
-  createCanvas(windowWidth-20, windowHeight-20);
+  createCanvas(windowWidth*0.888, windowHeight);
   noStroke();
 
   matter.init();
@@ -61,10 +64,10 @@ function setup() {
   gameManager = new GameManager();
   
   startButtonFill = color(100);
-  startBtnOriginX = windowWidth/2-75;
-  startBtnOriginY = windowHeight/2-50;
+  startBtnOriginX = width/2-75;
+  startBtnOriginY = height/2-50;
   
-  step = round(windowWidth/30);
+  step = round(width/30);
 }
 
 function mousePressed() {
@@ -108,6 +111,9 @@ function draw() {
       ui.calculateScore();
       gameManager.doTick();
 
+      //Draw score circle under objects
+      scoreCircle.draw();
+
       //PHYSICS
       for (let i = 0; i < gameManager.objects.length; i++) {
         let o = gameManager.objects[i];
@@ -115,23 +121,23 @@ function draw() {
         o.draw();
         if (o.rigidbody.isOffCanvas(100)) {
           matter.forget(o.rigidbody);
+          gameManager.objects.splice(i, 1);
           //splice returns an array of spliced objects which is why we list index here
-          gameManager.uninstantiatedObjects.push(gameManager.objects.splice(i, 1)[0]);
+          //gameManager.uninstantiatedObjects.push(gameManager.objects.splice(i, 1)[0]);
         }
       }
 
       //UI
-      scoreCircle.draw();
       ui.drawHand();
       ui.drawScoreBar();
     }
     //GAME OVER
     else{
-      textFont("Baskerville");
+      textFont("Gill Sans");
       background('rgba(0,0,0,0.05)');
-      textSize(windowWidth/10);
+      textSize(width/10);
       textAlign(CENTER, CENTER);
-      text('it all fell apart...', windowWidth/2, windowHeight/2);
+      text('it all fell apart...', width/2, height/2);
     }
   }
 }
@@ -143,12 +149,14 @@ function playAgainButtton(){
 }
 
 function drawBackground(){
-  if(frameRate() < 40 && step < windowWidth/20){
+  if(frameRate() < 40 && step < width/20){
     step += 2;
   }
   else if(frameRate()>100){
     step -= 2;
   }
+  
+  noStroke();
   let n;
   let from = color(218, 165, 32);
   let to = color(72, 61, 139);
@@ -157,15 +165,14 @@ function drawBackground(){
   let numCalls = 0;
   let intStep = step;//round(step);
   background(color(72, 61, 139));
-  for(let x = 0; x < windowWidth+intStep; x+=intStep){
-    for(let y = 0; y < windowHeight+intStep; y+=intStep){
+  for(let x = 0; x < width+intStep; x+=intStep){
+    for(let y = 0; y < height+intStep; y+=intStep){
       numCalls += 1;
       if(round(x+y) % 2 == 0){
         n = noise(x/noiseScale,y/noiseScale,frameCount/noiseScale);
         numNoiseCalls += 1;
       }
       let c = lerpColor(from, to, n);
-      noStroke();
       fill(c);
       ellipse(x-circleSize/2,y-circleSize/2,circleSize,circleSize);
     }
@@ -182,14 +189,15 @@ class ScoreCircle{
     drawingContext.setLineDash([5, 10, 30, 10]);
     stroke(255);
     noFill();
-    ellipse(windowWidth/2, windowHeight/2, this.radius*2);
+    ellipse(width/2, height/2, this.radius*2);
+    image(clock, width/2-centerCircleRadius, height/2-centerCircleRadius, centerCircleRadius*2, centerCircleRadius*2);
   }
 
   getObjectsInside(){
     this.objectsInside = [];
     for(let i = 0; i < gameManager.objects.length; i++){
       let object = gameManager.objects[i];
-      if (dist(object.rigidbody.getPositionX(), object.rigidbody.getPositionY(), windowWidth/2, windowHeight/2) <= this.radius){
+      if (dist(object.rigidbody.getPositionX(), object.rigidbody.getPositionY(), width/2, height/2) <= this.radius){
         this.objectsInside.push(object);
       }
     }
@@ -207,7 +215,7 @@ class UI{
   }
 
   drawScoreBar(){
-    let dimensions = [240, 10, windowWidth-500, 15, 5];
+    let dimensions = [240, 10, width-500, 15, 5];
     let alpha = map(min(this.score, 90), 90, 70, 0, 1, true);
     //background
     noStroke();
@@ -234,7 +242,7 @@ class UI{
     textAlign(CENTER, CENTER);
     fill("rgba(218, 74, 32,"+constrain(this.warningTextAlpha, 0, 1)+")");
     noStroke();
-    text('Keep it together!', windowWidth/2, dimensions[1]+textSize());
+    text('Keep it together!', width/2, dimensions[1]+textSize());
   }
 
   calculateScore(){
@@ -255,8 +263,8 @@ class UI{
     }
 
     translate(mouseX, mouseY);
-    let theta = atan((mouseY-windowHeight/2)/(mouseX-windowWidth/2)) + PI/2;
-    if(mouseX < windowWidth/2){
+    let theta = atan((mouseY-height/2)/(mouseX-width/2)) + PI/2;
+    if(mouseX < width/2){
       theta += PI;
     }
     rotate(theta);
@@ -527,27 +535,27 @@ class GameManager{
       i = int(random(0,11));
     switch(i){
       case 0:
-        return new Message(random(windowWidth, windowWidth+50), random(50, windowHeight-50));
+        return new Message(random(width, width+50), random(50, height-50));
       case 1:
-        return new PhoneAlert(random(windowWidth, windowWidth+50), random(50, windowHeight-50));
+        return new PhoneAlert(random(width, width+50), random(50, height-50));
       case 2:
-        return new Email(random(windowWidth, windowWidth+50), random(50, windowHeight-50));
+        return new Email(random(width, width+50), random(50, height-50));
       case 3:
-        return new Heart(random(windowWidth, windowWidth+50), random(50, windowHeight-50));
+        return new Heart(random(width, width+50), random(50, height-50));
       case 4:
-        return new Notes(random(windowWidth, windowWidth+50), random(50, windowHeight-50));
+        return new Notes(random(width, width+50), random(50, height-50));
       case 5:
-        return new Medicine(random(windowWidth, windowWidth+50), random(50, windowHeight-50));
+        return new Medicine(random(width, width+50), random(50, height-50));
       case 6:
-        return new Broom(random(windowWidth, windowWidth+50), random(50, windowHeight-50));
+        return new Broom(random(width, width+50), random(50, height-50));
       case 7:
-        return new Calendar(random(windowWidth, windowWidth+50), random(50, windowHeight-50));
+        return new Calendar(random(width, width+50), random(50, height-50));
       case 8:
-        return new Money(random(windowWidth, windowWidth+50), random(50, windowHeight-50));
+        return new Money(random(width, width+50), random(50, height-50));
       case 9:
-        return new Phone(random(windowWidth, windowWidth+50), random(50, windowHeight-50));
+        return new Phone(random(width, width+50), random(50, height-50));
       case 10:
-        return new Receipt(random(windowWidth, windowWidth+50), random(50, windowHeight-50));
+        return new Receipt(random(width, width+50), random(50, height-50));
     }
   }
 
@@ -560,9 +568,9 @@ class GameManager{
       object.remember();
     }
     let pos = createVector(object.rigidbody.getPositionX(), object.rigidbody.getPositionY());
-    let c = dist(pos.x, pos.y, windowWidth/2, windowHeight/2);
-    let dirX = (pos.x-windowWidth/2)/c;
-    let dirY = (pos.y-windowHeight/2)/c;
+    let c = dist(pos.x, pos.y, width/2, height/2);
+    let dirX = (pos.x-width/2)/c;
+    let dirY = (pos.y-height/2)/c;
     object.rigidbody.setVelocity(-dirX, -dirY);
     return object;
   }

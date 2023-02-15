@@ -1,0 +1,52 @@
+html, body{
+    margin: 0;
+    padding: 0;
+    background-color: rgb(255, 203, 122);
+    color: rgb(67, 40, 0);
+}
+
+*{
+    box-sizing: border-box;
+}
+
+header{
+    position: relative;
+    padding: 10px;
+    width: 90%;
+    left: 5%;
+    text-align: center;
+    background-color: rgb(218, 165, 32);
+}
+
+canvas{
+    position:absolute;
+    left: 5vw;
+}
+
+#title{
+    margin: 0;
+    padding: 0;
+    font-family: "Watercolor";
+    color:rgb(133, 56, 0);
+}
+
+#description-text{
+    position: relative;
+    width: 60%;
+    left: 20%;
+    text-align: left;
+    padding-bottom: 20px;
+    font-size: 20px;
+}
+
+div.instructions{
+    display: inline-block;
+    padding: 10px;
+    margin-left: 20px;
+    background-color: rgb(146, 111, 17);
+}
+
+@font-face{
+    font-family: Watercolor;
+    src: url("WatercolorDemo.otf");
+}
