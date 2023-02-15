@@ -503,20 +503,6 @@ class Money extends Rectangle{
   }
 }
 
-class Phone extends Rectangle{
-  constructor(x,y){
-    super(x,y,phone.width/3, phone.height/3);
-    this.sprite = phone;
-  }
-  draw(){
-    push();
-    translate(this.rigidbody.getPositionX(), this.rigidbody.getPositionY());
-    rotate(this.rigidbody.getAngle());
-    image(this.sprite, -this.rigidbody.getWidth()/2, -this.rigidbody.getHeight()/2, this.rigidbody.getWidth(), this.rigidbody.getHeight());
-    pop();
-  }
-}
-
 class GameManager{
   constructor(){
     this.objects = [];
