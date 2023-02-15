@@ -24,6 +24,7 @@ let calendar;
 let emailAlert;
 let money;
 let phone;
+let receipt;
 let closed_hand;
 let open_hand;
 
@@ -42,6 +43,7 @@ function preload(){
   emailAlert = loadImage("EmailAlert.png");
   money = loadImage("Money.png");
   phone = loadImage("Phone.png");
+  receipt = loadImage("Receipt.png");
   
   closed_hand = loadImage("https://img.icons8.com/external-soft-fill-juicy-fish/512/external-grab-cursors-soft-fill-soft-fill-juicy-fish-2.png");
   open_hand = loadImage("https://img.icons8.com/external-soft-fill-juicy-fish/512/external-hand-cursors-soft-fill-soft-fill-juicy-fish-2.png");
@@ -333,8 +335,178 @@ class ToothBrush extends Rectangle{
 }
 class Message extends Rectangle{
   constructor(x,y){
-    super(x,y,message.width, message.height);
+    super(x,y,message.width/3, message.height/3);
     this.sprite = message;
+  }
+  draw(){
+    push();
+    translate(this.rigidbody.getPositionX(), this.rigidbody.getPositionY());
+    rotate(this.rigidbody.getAngle());
+    image(this.sprite, -this.rigidbody.getWidth()/2, -this.rigidbody.getHeight()/2, this.rigidbody.getWidth(), this.rigidbody.getHeight());
+    pop();
+  }
+}
+
+class Phone extends Rectangle{
+  constructor(x,y){
+    super(x,y,phone.width/3, phone.height/3);
+    this.sprite = phone;
+  }
+  draw(){
+    push();
+    translate(this.rigidbody.getPositionX(), this.rigidbody.getPositionY());
+    rotate(this.rigidbody.getAngle());
+    image(this.sprite, -this.rigidbody.getWidth()/2, -this.rigidbody.getHeight()/2, this.rigidbody.getWidth(), this.rigidbody.getHeight());
+    pop();
+  }
+}
+
+class PhoneAlert extends Rectangle{
+  constructor(x,y){
+    super(x,y,phoneAlert.width/3, phoneAlert.height/3);
+    this.sprite = phoneAlert;
+  }
+  draw(){
+    push();
+    translate(this.rigidbody.getPositionX(), this.rigidbody.getPositionY());
+    rotate(this.rigidbody.getAngle());
+    image(this.sprite, -this.rigidbody.getWidth()/2, -this.rigidbody.getHeight()/2, this.rigidbody.getWidth(), this.rigidbody.getHeight());
+    pop();
+  }
+}
+
+class Email extends Rectangle{
+  constructor(x,y){
+    img = random([email, emailAlert]);
+    super(x,y,img.width/3, img.height/3);
+    this.sprite = img;
+  }
+  draw(){
+    push();
+    translate(this.rigidbody.getPositionX(), this.rigidbody.getPositionY());
+    rotate(this.rigidbody.getAngle());
+    image(this.sprite, -this.rigidbody.getWidth()/2, -this.rigidbody.getHeight()/2, this.rigidbody.getWidth(), this.rigidbody.getHeight());
+    pop();
+  }
+}
+
+class Receipt extends Rectangle{
+  constructor(x,y){
+    super(x,y,receipt.width/3, receipt.height/3);
+    this.sprite = receipt;
+  }
+  draw(){
+    push();
+    translate(this.rigidbody.getPositionX(), this.rigidbody.getPositionY());
+    rotate(this.rigidbody.getAngle());
+    image(this.sprite, -this.rigidbody.getWidth()/2, -this.rigidbody.getHeight()/2, this.rigidbody.getWidth(), this.rigidbody.getHeight());
+    pop();
+  }
+}
+
+class Heart extends Rectangle{
+  constructor(x,y){
+    img = random([heart, brokenHeart]);
+    super(x,y,img.width/3, img.height/3);
+    this.sprite = img;
+  }
+  draw(){
+    push();
+    translate(this.rigidbody.getPositionX(), this.rigidbody.getPositionY());
+    rotate(this.rigidbody.getAngle());
+    image(this.sprite, -this.rigidbody.getWidth()/2, -this.rigidbody.getHeight()/2, this.rigidbody.getWidth(), this.rigidbody.getHeight());
+    pop();
+  }
+}
+
+class Notes extends Rectangle{
+  constructor(x,y){
+    super(x,y,notes.width/3, notes.height/3);
+    this.sprite = notes;
+  }
+  draw(){
+    push();
+    translate(this.rigidbody.getPositionX(), this.rigidbody.getPositionY());
+    rotate(this.rigidbody.getAngle());
+    image(this.sprite, -this.rigidbody.getWidth()/2, -this.rigidbody.getHeight()/2, this.rigidbody.getWidth(), this.rigidbody.getHeight());
+    pop();
+  }
+}
+
+class Groceries extends Rectangle{
+  constructor(x,y){
+    super(x,y,groceries.width/3, groceries.height/3);
+    this.sprite = groceries;
+  }
+  draw(){
+    push();
+    translate(this.rigidbody.getPositionX(), this.rigidbody.getPositionY());
+    rotate(this.rigidbody.getAngle());
+    image(this.sprite, -this.rigidbody.getWidth()/2, -this.rigidbody.getHeight()/2, this.rigidbody.getWidth(), this.rigidbody.getHeight());
+    pop();
+  }
+}
+
+class Medicine extends Rectangle{
+  constructor(x,y){
+    super(x,y,medicine.width/3, medicine.height/3);
+    this.sprite = medicine;
+  }
+  draw(){
+    push();
+    translate(this.rigidbody.getPositionX(), this.rigidbody.getPositionY());
+    rotate(this.rigidbody.getAngle());
+    image(this.sprite, -this.rigidbody.getWidth()/2, -this.rigidbody.getHeight()/2, this.rigidbody.getWidth(), this.rigidbody.getHeight());
+    pop();
+  }
+}
+
+class Broom extends Rectangle{
+  constructor(x,y){
+    super(x,y,broom.width/3, broom.height/3);
+    this.sprite = broom;
+  }
+  draw(){
+    push();
+    translate(this.rigidbody.getPositionX(), this.rigidbody.getPositionY());
+    rotate(this.rigidbody.getAngle());
+    image(this.sprite, -this.rigidbody.getWidth()/2, -this.rigidbody.getHeight()/2, this.rigidbody.getWidth(), this.rigidbody.getHeight());
+    pop();
+  }
+}
+
+class Calendar extends Rectangle{
+  constructor(x,y){
+    super(x,y,calendar.width/3, calendar.height/3);
+    this.sprite = calendar;
+  }
+  draw(){
+    push();
+    translate(this.rigidbody.getPositionX(), this.rigidbody.getPositionY());
+    rotate(this.rigidbody.getAngle());
+    image(this.sprite, -this.rigidbody.getWidth()/2, -this.rigidbody.getHeight()/2, this.rigidbody.getWidth(), this.rigidbody.getHeight());
+    pop();
+  }
+}
+
+class Money extends Rectangle{
+  constructor(x,y){
+    super(x,y,money.width/3, money.height/3);
+    this.sprite = money;
+  }
+  draw(){
+    push();
+    translate(this.rigidbody.getPositionX(), this.rigidbody.getPositionY());
+    rotate(this.rigidbody.getAngle());
+    image(this.sprite, -this.rigidbody.getWidth()/2, -this.rigidbody.getHeight()/2, this.rigidbody.getWidth(), this.rigidbody.getHeight());
+    pop();
+  }
+}
+
+class Phone extends Rectangle{
+  constructor(x,y){
+    super(x,y,phone.width/3, phone.height/3);
+    this.sprite = phone;
   }
   draw(){
     push();
@@ -365,8 +537,30 @@ class GameManager{
   }
 
   spawnObject(){
-    let newObj = new Message(random(windowWidth, windowWidth+50), random(50, windowHeight-50));
-    return newObj;
+    switch(int(random(0,11))){
+      case 0:
+        return new Message(random(windowWidth, windowWidth+50), random(50, windowHeight-50));
+      case 1:
+        return new PhoneAlert(random(windowWidth, windowWidth+50), random(50, windowHeight-50));
+      case 2:
+        return new Email(random(windowWidth, windowWidth+50), random(50, windowHeight-50));
+      case 3:
+        return new Heart(random(windowWidth, windowWidth+50), random(50, windowHeight-50));
+      case 4:
+        return new Notes(random(windowWidth, windowWidth+50), random(50, windowHeight-50));
+      case 5:
+        return new Medicine(random(windowWidth, windowWidth+50), random(50, windowHeight-50));
+      case 6:
+        return new Broom(random(windowWidth, windowWidth+50), random(50, windowHeight-50));
+      case 7:
+        return new Calendar(random(windowWidth, windowWidth+50), random(50, windowHeight-50));
+      case 8:
+        return new Money(random(windowWidth, windowWidth+50), random(50, windowHeight-50));
+      case 9:
+        return new Phone(random(windowWidth, windowWidth+50), random(50, windowHeight-50));
+      case 10:
+        return new Receipt(random(windowWidth, windowWidth+50), random(50, windowHeight-50));
+    }
   }
 
   getObject(){
