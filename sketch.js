@@ -67,7 +67,7 @@ function setup() {
   startBtnOriginX = width/2-75;
   startBtnOriginY = height/2-50;
   
-  step = round(width/30);
+  step = round(width/25);
 }
 
 function mousePressed() {
@@ -165,8 +165,8 @@ function drawBackground(){
   let numCalls = 0;
   let intStep = step;//round(step);
   background(color(72, 61, 139));
-  for(let x = 0; x < width+intStep; x+=intStep){
-    for(let y = 0; y < height+intStep; y+=intStep){
+  for(let x = 0; x < width+2*intStep; x+=intStep){
+    for(let y = 0; y < height+2*intStep; y+=intStep){
       numCalls += 1;
       if(round(x+y) % 2 == 0){
         n = noise(x/noiseScale,y/noiseScale,frameCount/noiseScale);
