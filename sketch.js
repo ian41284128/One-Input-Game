@@ -36,7 +36,7 @@ function preload(){
   brokenHeart = loadImage("BrokenHeart.png");
   notes = loadImage("Writing.png");
   groceries = loadImage("Groceries.png");
-  medicine = loadImage("Medicine.png");
+  medicine = loadImage("Pills.png");
   broom = loadImage("Broom.png");
   calendar = loadImage("Calendar.png");
   emailAlert = loadImage("EmailAlert.png");
