@@ -377,7 +377,7 @@ class PhoneAlert extends Rectangle{
 
 class Email extends Rectangle{
   constructor(x,y){
-    img = random([email, emailAlert]);
+    let img = random([email, emailAlert]);
     super(x,y,img.width/3, img.height/3);
     this.sprite = img;
   }
@@ -406,7 +406,7 @@ class Receipt extends Rectangle{
 
 class Heart extends Rectangle{
   constructor(x,y){
-    img = random([heart, brokenHeart]);
+    let img = random([heart, brokenHeart]);
     super(x,y,img.width/3, img.height/3);
     this.sprite = img;
   }
@@ -421,7 +421,7 @@ class Heart extends Rectangle{
 
 class Notes extends Rectangle{
   constructor(x,y){
-    super(x,y,notes.width/3, notes.height/3);
+    super(x,y,notes.width/4, notes.height/4);
     this.sprite = notes;
   }
   draw(){
@@ -508,8 +508,8 @@ class GameManager{
     this.objects = [];
     this.timerLength = 5;
     this.uninstantiatedObjects = [];
-    for (let i = 0; i < 4; i++) {
-      this.uninstantiatedObjects.push(this.spawnObject());
+    for (let i = 0; i < 10; i++) {
+      this.uninstantiatedObjects.push(this.spawnObject(i));
     }
     this.timer = this.timerLength;
   }
@@ -522,8 +522,10 @@ class GameManager{
     }
   }
 
-  spawnObject(){
-    switch(int(random(0,11))){
+  spawnObject(i=-1){
+    if(i == -1)
+      i = int(random(0,11));
+    switch(i){
       case 0:
         return new Message(random(windowWidth, windowWidth+50), random(50, windowHeight-50));
       case 1:
