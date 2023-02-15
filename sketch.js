@@ -331,7 +331,7 @@ class ToothBrush extends Rectangle{
     pop();
   }
 }
-class Message{
+class Message extends Rectangle{
   constructor(x,y){
     super(x,y,message.width, message.height);
     this.sprite = message;
