@@ -30,6 +30,19 @@ let open_hand;
 function preload(){
   toothbrush = loadImage("https://cdn.iconscout.com/icon/free/png-256/toothbrush-1828030-1551575.png");
   message = loadImage("SpeechBubble.png");
+  phoneAlert = loadImage("PhoneAlert.png");
+  email = loadImage("Email.png");
+  heart = loadImage("Heart.png");
+  brokenHeart = loadImage("BrokenHeart.png");
+  notes = loadImage("Writing.png");
+  groceries = loadImage("Groceries.png");
+  medicine = loadImage("Medicine.png");
+  broom = loadImage("Broom.png");
+  calendar = loadImage("Calendar.png");
+  emailAlert = loadImage("EmailAlert.png");
+  money = loadImage("Money.png");
+  phone = loadImage("Phone.png");
+  
   closed_hand = loadImage("https://img.icons8.com/external-soft-fill-juicy-fish/512/external-grab-cursors-soft-fill-soft-fill-juicy-fish-2.png");
   open_hand = loadImage("https://img.icons8.com/external-soft-fill-juicy-fish/512/external-hand-cursors-soft-fill-soft-fill-juicy-fish-2.png");
 }
@@ -318,6 +331,19 @@ class ToothBrush extends Rectangle{
     pop();
   }
 }
+class Message{
+  constructor(x,y){
+    super(x,y,message.width, message.height);
+    this.sprite = message;
+  }
+  draw(){
+    push();
+    translate(this.rigidbody.getPositionX(), this.rigidbody.getPositionY());
+    rotate(this.rigidbody.getAngle());
+    image(this.sprite, -this.rigidbody.getWidth()/2, -this.rigidbody.getHeight()/2, this.rigidbody.getWidth(), this.rigidbody.getHeight());
+    pop();
+  }
+}
 
 class GameManager{
   constructor(){
@@ -339,7 +365,7 @@ class GameManager{
   }
 
   spawnObject(){
-    let newObj = new ToothBrush(random(windowWidth, windowWidth+50), random(50, windowHeight-50));
+    let newObj = new Message(random(windowWidth, windowWidth+50), random(50, windowHeight-50));
     return newObj;
   }
 
