@@ -52,6 +52,10 @@ function preload(){
   clock = loadImage("images/ClockFace.png");
 }
 
+function windowResized() {
+  resizeCanvas(windowWidth*0.888, windowHeight);
+}
+
 function setup() {
   createCanvas(windowWidth*0.888, windowHeight);
   noStroke();
@@ -63,7 +67,7 @@ function setup() {
   ui = new UI();
   gameManager = new GameManager();
   
-  startButtonFill = color(100);
+  startButtonFill = color(108, 47, 0);
   startBtnOriginX = width/2-75;
   startBtnOriginY = height/2-50;
   
@@ -72,7 +76,7 @@ function setup() {
 
 function mousePressed() {
   if (mouseX >= startBtnOriginX && mouseX <= startBtnOriginX+150 && mouseY >= startBtnOriginY && mouseY <= startBtnOriginY+100) {
-    startButtonFill = color(50);
+    startButtonFill = color(146, 73, 17);
   }
 }
 
@@ -81,7 +85,7 @@ function mouseReleased(){
     startGame = true;
   }
   else{
-    startButtonFill = color(100);
+    startButtonFill = color(108, 47, 0);
   }
 }
 
@@ -94,11 +98,11 @@ function draw() {
       fill(startButtonFill);
     }
     else{
-      fill(color(200));
+      fill(color(146, 73, 17));
     }
     rect(startBtnOriginX, startBtnOriginY, 150, 100, 20, 20);
-    fill(0);
-    stroke(255);
+    fill(146, 111, 17);
+    stroke(210, 176, 81);
     triangle(startBtnOriginX+150/3, startBtnOriginY+100/3.5, startBtnOriginX+150/3, startBtnOriginY+100*(1-1/3.5), startBtnOriginX+150*(2/3), startBtnOriginY+50);
   }
   else{
@@ -135,9 +139,13 @@ function draw() {
     else{
       textFont("Gill Sans");
       background('rgba(0,0,0,0.05)');
+      fill(color(146, 73, 17));
       textSize(width/10);
       textAlign(CENTER, CENTER);
       text('it all fell apart...', width/2, height/2);
+      textSize(width/20);
+      fill(color(146, 111, 17));
+      text("It's okay though, it's just a game", width/2, height/2+100);
     }
   }
 }

@@ -21,6 +21,7 @@ header{
 canvas{
     position:absolute;
     left: 5vw;
+    padding-bottom: 39px;
 }
 
 #title{
@@ -43,7 +44,18 @@ div.instructions{
     display: inline-block;
     padding: 10px;
     margin-left: 20px;
-    background-color: rgb(146, 111, 17);
+    background-color: rgb(210, 176, 81);
+    border: 2px dashed rgb(133, 56, 0);
+}
+
+footer{
+    position: fixed;
+    bottom: 0;
+    background-color: rgb(210, 176, 81);
+    z-index: 10;
+    width: 100%;
+    padding: 10px;
+    padding-left: 6vw;
 }
 
 @font-face{
