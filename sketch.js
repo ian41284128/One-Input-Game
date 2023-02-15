@@ -1,7 +1,7 @@
 let scoreCircle;
 let ui;
 let gameManager;
-let noiseScale=500, noiseStrength=1, centerCircleRadius = 150;
+let noiseScale=500, noiseStrength=1, centerCircleRadius = 180;
 let startGame = false;
 
 let startButtonFill;
@@ -281,7 +281,7 @@ class PhysicsObject{
     let angle=noise(x/noiseScale, y/noiseScale, frameCount/noiseScale)*TWO_PI*noiseStrength;
     let forceFraction = 2;
     if (scoreCircle.objectsInside.includes(this)){
-      forceFraction = 6;
+      forceFraction = 8;
     }
     this.addForce(cos(angle)/forceFraction, sin(angle)/forceFraction);
   }
@@ -335,7 +335,7 @@ class ToothBrush extends Rectangle{
 }
 class Message extends Rectangle{
   constructor(x,y){
-    super(x,y,message.width/3, message.height/3);
+    super(x,y,message.width/5, message.height/5);
     this.sprite = message;
   }
   draw(){
@@ -349,7 +349,7 @@ class Message extends Rectangle{
 
 class Phone extends Rectangle{
   constructor(x,y){
-    super(x,y,phone.width/3, phone.height/3);
+    super(x,y,phone.width/5, phone.height/5);
     this.sprite = phone;
   }
   draw(){
@@ -363,7 +363,7 @@ class Phone extends Rectangle{
 
 class PhoneAlert extends Rectangle{
   constructor(x,y){
-    super(x,y,phoneAlert.width/3, phoneAlert.height/3);
+    super(x,y,phoneAlert.width/6, phoneAlert.height/6);
     this.sprite = phoneAlert;
   }
   draw(){
@@ -378,7 +378,7 @@ class PhoneAlert extends Rectangle{
 class Email extends Rectangle{
   constructor(x,y){
     let img = random([email, emailAlert]);
-    super(x,y,img.width/3, img.height/3);
+    super(x,y,img.width/7, img.height/7);
     this.sprite = img;
   }
   draw(){
@@ -392,7 +392,7 @@ class Email extends Rectangle{
 
 class Receipt extends Rectangle{
   constructor(x,y){
-    super(x,y,receipt.width/3, receipt.height/3);
+    super(x,y,receipt.width/5, receipt.height/5);
     this.sprite = receipt;
   }
   draw(){
@@ -407,7 +407,7 @@ class Receipt extends Rectangle{
 class Heart extends Rectangle{
   constructor(x,y){
     let img = random([heart, brokenHeart]);
-    super(x,y,img.width/3, img.height/3);
+    super(x,y,img.width/4, img.height/4);
     this.sprite = img;
   }
   draw(){
@@ -421,7 +421,7 @@ class Heart extends Rectangle{
 
 class Notes extends Rectangle{
   constructor(x,y){
-    super(x,y,notes.width/4, notes.height/4);
+    super(x,y,notes.width/7, notes.height/7);
     this.sprite = notes;
   }
   draw(){
@@ -435,7 +435,7 @@ class Notes extends Rectangle{
 
 class Groceries extends Rectangle{
   constructor(x,y){
-    super(x,y,groceries.width/3, groceries.height/3);
+    super(x,y,groceries.width/6, groceries.height/6);
     this.sprite = groceries;
   }
   draw(){
@@ -449,7 +449,7 @@ class Groceries extends Rectangle{
 
 class Medicine extends Rectangle{
   constructor(x,y){
-    super(x,y,medicine.width/3, medicine.height/3);
+    super(x,y,medicine.width/5, medicine.height/5);
     this.sprite = medicine;
   }
   draw(){
@@ -463,7 +463,7 @@ class Medicine extends Rectangle{
 
 class Broom extends Rectangle{
   constructor(x,y){
-    super(x,y,broom.width/3, broom.height/3);
+    super(x,y,broom.width/5, broom.height/5);
     this.sprite = broom;
   }
   draw(){
@@ -477,7 +477,7 @@ class Broom extends Rectangle{
 
 class Calendar extends Rectangle{
   constructor(x,y){
-    super(x,y,calendar.width/3, calendar.height/3);
+    super(x,y,calendar.width/6, calendar.height/6);
     this.sprite = calendar;
   }
   draw(){
@@ -491,7 +491,7 @@ class Calendar extends Rectangle{
 
 class Money extends Rectangle{
   constructor(x,y){
-    super(x,y,money.width/3, money.height/3);
+    super(x,y,money.width/5, money.height/5);
     this.sprite = money;
   }
   draw(){
