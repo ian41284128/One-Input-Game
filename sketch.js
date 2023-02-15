@@ -30,6 +30,10 @@ let closed_hand;
 let open_hand;
 let clock;
 
+function mouseWheel(event) {
+  window.scrollBy(0,event.delta);
+}
+
 function preload(){
   toothbrush = loadImage("https://cdn.iconscout.com/icon/free/png-256/toothbrush-1828030-1551575.png");
   message = loadImage("images/SpeechBubble.png");
